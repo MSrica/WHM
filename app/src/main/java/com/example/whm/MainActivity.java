@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
     // constants
     protected final String out = "Out", in = "In", next = "Next", zero = "0";
-    protected final int numberOfBreaths = 30, numberOfSeconds = 15, vibrationMilliseconds = 100;
+    protected final int numberOfBreaths = 30, numberOfSeconds = 15, vibrationShortMilliseconds = 100, vibrationLongMilliseconds = 500;
     protected final int oneMinuteInMilliseconds = 60000, oneSecondInMilliseconds = 1000, minuteInSeconds = 60, hourInSeconds = 3600;
 
     // variables
@@ -153,8 +153,14 @@ public class MainActivity extends AppCompatActivity {
 
     // buttons
     protected void vibrate(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) vibrator.vibrate(VibrationEffect.createOneShot(vibrationMilliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
-        else vibrator.vibrate(vibrationMilliseconds);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            if(Integer.parseInt(breathCounterTextView.getText().toString()) < numberOfBreaths-3) vibrator.vibrate(VibrationEffect.createOneShot(vibrationShortMilliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
+            else vibrator.vibrate(VibrationEffect.createOneShot(vibrationLongMilliseconds, VibrationEffect.DEFAULT_AMPLITUDE));
+        }
+        else{
+            if(Integer.parseInt(breathCounterTextView.getText().toString()) < numberOfBreaths-3) vibrator.vibrate(vibrationShortMilliseconds);
+            else vibrator.vibrate(vibrationLongMilliseconds);
+        }
     }
     protected void buttonActions(){
         vibrate();
