@@ -1,6 +1,7 @@
 <resources>
     <string name="appNameString">WHM</string>
     <string name="breathCounterString">0</string>
-    <string name="stopwatchString">00:00</string>
+    <string name="stopwatchString">0:00</string>
     <string name="buttonString">Next</string>
+    <string name="endButtonString">Finish</string>
 </resources>
